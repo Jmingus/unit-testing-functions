@@ -27,7 +27,21 @@ function checkData(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function concatenateArrays(a, b) {
-	// your code goes here
+    if(Array.isArray(a) !== true && Array.isArray(b) !== true){
+        throw 'Invalid Input'
+    }
+    for(var i = 0; i < a.length; i++){
+        if(typeof a[i] !== 'number'){
+            throw 'Invalid Input'
+        }
+    }
+    for(var i = 0; i < b.length; i++){
+        if(typeof b[i] !== 'number'){
+            throw 'Invalid Input'
+        }
+    }
+	var newArray = a.concat(b)
+    return newArray;
 }
 
 /*
@@ -40,7 +54,13 @@ function concatenateArrays(a, b) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function fixProperNoun(noun) {
-	// your code goes here
+    if( typeof noun !== 'string'){
+        throw 'Invalid Input'
+    }
+
+    var firstLetter = noun.substring(0,1).toUpperCase();
+    var cleanedNoun = firstLetter + noun.substring(1).toLowerCase()
+    return cleanedNoun
 }
 
 /*
@@ -51,7 +71,11 @@ function fixProperNoun(noun) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function sortLetters(inputString) {
-	// your code goes here
+    if( typeof inputString !== 'string'){
+        throw 'Invalid Input'
+    }
+    var sortedString = inputString.split('').sort().join('')
+    return sortedString;
 }
 
 /*
