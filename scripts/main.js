@@ -86,7 +86,16 @@ function sortLetters(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function absVal(integer) {
-	// your code goes here
+    if( typeof integer !== 'number'){
+        throw 'Invalid Input'
+    }
+    var cleanedInteger = null;
+    if(integer < 0){
+        cleanedInteger = Math.ceil(integer) * -1
+    }else{
+        cleanedInteger = Math.ceil(integer)
+    }
+    return cleanedInteger
 }
 
 /*
@@ -96,6 +105,16 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function myMin(integer1, integer2){
+    if( typeof integer1 !== 'number' && typeof integer2 !== 'number'){
+        throw 'Invalid Input'
+    }
+    if( integer1 < integer2){
+        return integer1
+    }else{
+        return integer2
+    }
+}
 
 /*
  * PROBLEM `myMax`: (normal) - Actual Interview Question
@@ -106,7 +125,21 @@ function absVal(integer) {
  *
  * Insane mode: do this without using a for loop.
  */
-
+function myMax(arrayOfIntegers){
+    if(Array.isArray(arrayOfIntegers) !== true){
+        throw 'Invalid Input'
+    }
+    for(var i = 0; i < arrayOfIntegers.length; i++){
+        if(typeof arrayOfIntegers[i] !== 'number'){
+            throw 'Invalid Input'
+        }
+    }
+    var sortedArray = arrayOfIntegers.sort(function (a, b) {
+        return a - b;
+    });
+    var largestInt = sortedArray.reverse()[0]
+    return largestInt;
+}
 /*
  * PROBLEM `getMonth`: (normal)
  * Write a function called `getMonth` that maps a given integer to a month.
