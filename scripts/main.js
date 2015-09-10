@@ -151,20 +151,65 @@ function myMax(arrayOfIntegers){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function getMonth(integer) {
+    var months = {
+        0: "January",
+        1: "February",
+        2: "March",
+        3: "April",
+        4: "May",
+        5: "June",
+        6: "July",
+        7: "August",
+        8: "September",
+        9: "October",
+        10: "November",
+        11: "December"
+    }
+    if(typeof integer !== 'number'){
+        throw 'Invalid Input'
+    }
+    if(integer < 1 || integer > 12){
+        throw 'Invalid Input'
+    }
+    return months[integer - 1]
+}
 /*
  * PROBLEM `randomElement`: (normal)
  * Create a function called `randomElement` that takes an array of values and
  * returns one randomly selected value from that array.
  */
+function randomElement(arrayOfValues){
+    var newArray = []
+    newArray.push(arrayOfValues[Math.floor(Math.random() * (arrayOfValues.length - 0) - 0)])
+    return newArray
 
+}
 /*
  * PROBLEM `studentPairs`: (normal)
  * Create a javascript function called `studentPairs` that takes an array of
  * student names and returns an array of randomly selected pairs of students
  * (array of arrays).
  */
+function studentPairs(studentNames){
+    var pairedNames = []
+    if(Array.isArray(studentNames) !== true){
+        throw 'Invalid Input'
+    }
+    for(var i = 0; i < studentNames.length; i++){
+        if(typeof studentNames[i] !== 'string'){
+            throw 'Invalid Input'
+        }
+    }
+    var pairOne = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
+    var pairTwo = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
+    while( pairTwo === pairOne){
+        pairTwo = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
+    }
+    pairedNames.push(pairOne, pairTwo);
+    return pairedNames
 
+}
 /*
  * PROBLEM `sumSquares`: (normal)
  * Write a function called `sumSquares` that returns the sum of squares of all
