@@ -4,6 +4,7 @@ var functions = require('../scripts/main.js');
 
 describe('randomElement', function () {
     it('should return one random value in the array', function(){
-        expect(functions.randomElement([10,20,30])).to.have.members([10])
+        var elements = ['a',3,4,[2],'s']
+        expect(elements.indexOf(functions.randomElement(elements))).to.be.above(-1)
     })
 });

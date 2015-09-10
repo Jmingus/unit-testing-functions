@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash')
 
 /*
  * PROBLEM `checkData`: (normal)
@@ -27,7 +28,7 @@ function checkData(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function concatenateArrays(a, b) {
-    if(Array.isArray(a) !== true && Array.isArray(b) !== true){
+    if(!_.isArray(a) && !_.isArray(b)){
         throw 'Invalid Input'
     }
     for(var i = 0; i < a.length; i++){
@@ -126,7 +127,7 @@ function myMin(integer1, integer2){
  * Insane mode: do this without using a for loop.
  */
 function myMax(arrayOfIntegers){
-    if(Array.isArray(arrayOfIntegers) !== true){
+    if(!_.isArray(arrayOfIntegers)){
         throw 'Invalid Input'
     }
     for(var i = 0; i < arrayOfIntegers.length; i++){
@@ -180,8 +181,8 @@ function getMonth(integer) {
  * returns one randomly selected value from that array.
  */
 function randomElement(arrayOfValues){
-    var newArray = []
-    newArray.push(arrayOfValues[Math.floor(Math.random() * (arrayOfValues.length - 0) - 0)])
+
+    var newArray = (arrayOfValues[Math.floor(Math.random() * (arrayOfValues.length - 0) - 0)])
     return newArray
 
 }
@@ -193,7 +194,7 @@ function randomElement(arrayOfValues){
  */
 function studentPairs(studentNames){
     var pairedNames = []
-    if(Array.isArray(studentNames) !== true){
+    if(!_.isArray(studentNames)){
         throw 'Invalid Input'
     }
     for(var i = 0; i < studentNames.length; i++){
@@ -201,13 +202,15 @@ function studentPairs(studentNames){
             throw 'Invalid Input'
         }
     }
-    var pairOne = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
-    var pairTwo = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
-    while( pairTwo === pairOne){
-        pairTwo = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
+    for(var j = 0; j < studentNames.length; j++){
+        var singleStudent = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
+        while(_.includes(pairedNames,singleStudent)){
+            singleStudent = studentNames[Math.floor(Math.random() * (studentNames.length - 0))]
+        }
+        pairedNames.push(singleStudent);
     }
-    pairedNames.push(pairOne, pairTwo);
-    return pairedNames
+
+    return _.chunk(pairedNames, 2)
 
 }
 /*
@@ -217,7 +220,20 @@ function studentPairs(studentNames){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function sumSquares(integer){
+    var thingsToBeSum = []
+    if(!_.isNumber(integer)){
+        throw 'Invalid Input'
+    }
+    if(integer < 1){
+        throw 'Invalid Input'
+    }
+    for(var i = 1; i < integer + 1; i++){
+        var squared = i * i
+        thingsToBeSum.push(squared)
+    }
+    return _.sum(thingsToBeSum)
+}
 /* 
  * PROBLEM `findMaxDiff`: (normal)
  * Given an array of integers, write a function called `findMaxDiff` that finds
