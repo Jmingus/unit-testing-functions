@@ -241,7 +241,29 @@ function sumSquares(integer){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function findMaxDiff(arrayOfIntegers){
+    var values = []
+    if(!_.isArray(arrayOfIntegers)){
+        throw 'Invalid Input'
+    }
+    for(var i = 0; i < arrayOfIntegers.length; i++){
+        if(!_.isNumber(arrayOfIntegers[i])){
+            throw 'Invalid Input'
+        }
+    }
+    var chunked = _.chunk(arrayOfIntegers, 2)
+    for(var j = 0; j < arrayOfIntegers.length; j++){
+        var max = _.max(chunked[0])
+        var min = _.min(chunked[0])
+        var result = max - min
+        values.push(result)
+        chunked = _.flatten(chunked)
+        chunked = _.drop(chunked)
+        chunked = _.chunk(chunked,2)
+    }
+    var maxDiff = _.max(values)
+    return maxDiff
+}
 /*
  * PROBLEM `insertDashes`: (normal)
  * Write a function called `insertDashes` that transforms a given sentence into
@@ -250,7 +272,18 @@ function sumSquares(integer){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function insertDashes(string){
+    var finalArray = []
+    if(!_.isString(string)){
+        throw 'Invalid Input'
+    }
+    var split = string.split(' ')
+    for(var i = 0; i < split.length;i++ ){
+       var dashedWord = split[i].split('').join('-')
+       finalArray.push(dashedWord)
+    }
+    return finalArray.join(' ')
+}
 /*
  * PROBLEM `mySubstring`: (normal)
  * Implement a function called `mySubstring` that can output the substring of
@@ -262,7 +295,20 @@ function sumSquares(integer){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function mySubstring(string, a, b){
+    if(!_.isString(string)){
+        throw 'Invalid Input'
+    }
+    if(!_.isNumber(a)||!_.isNumber(b)){
+        throw 'Invalid Input'
+    }
+    if( a > b){
+       var newString = string.slice(b,a)
+    }else{
+       var newString = string.slice(a,b)
+    }
+    return newString
+}
 /*
  * PROBLEM `splitSwap`: (hard)
  * Write a function called `splitSwap` that swaps two halves of a given array.
