@@ -319,7 +319,25 @@ function mySubstring(string, a, b){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function splitSwap(array){
+    var result = []
+    if(!_.isArray(array)){
+        throw 'Invalid Input'
+    }
+    var separator = array.length;
+    if(separator % 2 === 0){
+       var split = _.chunk(array, separator/2);
+       result.push(split[1])
+       result.push(split[0])
+    }else {
+       var halfSlice = Math.floor(separator/2);
+        var split = _.chunk(array, halfSlice)
+        result.push(split[1])
+        result.push(split[2])
+        result.push(split[0])
+    }
+    return _.flatten(result);
+}
 /*
  * PROBLEM `smallMultiples`: (hard)
  * For given n and k write a function called `smallMultiples` that returns the
@@ -330,7 +348,19 @@ function mySubstring(string, a, b){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function smallMultiples(n, k){
+    var multipleCounter = 0
+    if(!_.isNumber(n) || !_.isNumber(k)){
+        throw 'Invalid Input'
+    }
+    for(var i = 1; i < n + 1; i++){
+        var currentValue = i * k
+        if( currentValue < n){
+            multipleCounter ++
+        }
+    }
+    return multipleCounter
+}
 /*
  * PROBLEM `rot13`: (hard)
  * Create a function called `rot13` that takes an unencrypted string and returns
@@ -339,6 +369,9 @@ function mySubstring(string, a, b){
  * The input should only contain lower-case alphabetic characters. If the input
  * is invalid throw an 'Invalid Input' exception.
  */
+function rot13(a,b){
+
+}
 
 /*
  * PROBLEM `derot13`: (hard)
